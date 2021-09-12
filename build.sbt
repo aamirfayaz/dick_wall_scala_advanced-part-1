@@ -2,7 +2,7 @@ name := "Scala-Advanced-Exercises-1"
 
 version in ThisBuild := "1.0-SNAPSHOT"
 
-scalaVersion in ThisBuild := "2.12.4"
+scalaVersion in ThisBuild := "2.12.11"
 
 scalacOptions in ThisBuild ++= Seq("-deprecation", "-feature")
 

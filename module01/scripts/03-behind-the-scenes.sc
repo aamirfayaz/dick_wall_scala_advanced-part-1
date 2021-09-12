@@ -32,7 +32,8 @@ fred.weightInKilos
 
 fred.weightInPounds
 
-fred.weightInPounds_=(125)
+//fred.weightInPounds_=(125)
+fred.weightInPounds = 125
 
 fred.weightInPounds
 
@@ -42,9 +43,9 @@ fred.weightInKilos
 // vals, vars and defs share the same name space
 // and cannot duplicate names
 
-// class Foo {
-//   private[this] val yo: String = "Yo"
-//   def yo: String = "Hello"  // will not compile...
-//   def greet(name: String): String =
-//     s"$yo $name"  // which yo would it call?
-// }
+ class Foo {
+   private[this] val yo: String = "Yo"
+   def yo: String = "Hello"  // will not compile...
+   def greet(name: String): String =
+     s"$yo $name"  // which yo would it call?
+ }
