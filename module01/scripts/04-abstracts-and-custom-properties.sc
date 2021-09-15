@@ -44,7 +44,7 @@ fred.weight = 65.0
 
 fred.weight
 
-fred.weight = -5.0
+//fred.weight = -5.0
 
 
 class TruckLoad extends HeightAndWeight {
