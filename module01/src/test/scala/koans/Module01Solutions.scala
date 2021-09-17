@@ -16,8 +16,9 @@ import ExecutionContext.Implicits.global
 class Module01Solutions extends KoanSuite with Matchers {
 
   class CalorieTracker {
+
     private[this] var _dailyMax: Int = _
-    private[this] var _currentDaily: Int = 0
+    private[this] var _currentDaily: Int = _
 
     def dailyMax: Int = _dailyMax
     def dailyMax_=(x: Int) {
@@ -46,11 +47,12 @@ class Module01Solutions extends KoanSuite with Matchers {
   test ("should enforce limits on daily") {
     val tracker = new CalorieTracker
     intercept[IllegalArgumentException] { tracker.dailyMax = 0 }
-    intercept[IllegalArgumentException] { tracker.dailyMax = -100 }
+    intercept[IllegalArgumentException] { tracker.dailyMax = -600 }
     intercept[IllegalArgumentException] { tracker.dailyMax = 5000 } // should allow up to 4999 calories only
   }
 
   test ("should enforce limits on setting current daily calories based on tracker max") {
+
     val tracker1 = new CalorieTracker
     val tracker2 = new CalorieTracker
 
@@ -71,6 +73,7 @@ class Module01Solutions extends KoanSuite with Matchers {
 
     tracker1.currentDaily should be (1500)
     tracker2.currentDaily should be (2500)
+
   }
 
   test ("should enforce limits on the eat and exercise methods too") {
