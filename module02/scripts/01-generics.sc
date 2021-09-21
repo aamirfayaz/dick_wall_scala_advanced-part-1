@@ -21,21 +21,27 @@ case class Bowl(food: Food) {
   override def toString = s"A bowl of yummy ${food.name}s"
   def contents = food
 }
-val fruitBowl = Bowl(fuji)
-val cerealBowl = Bowl(alpen)
-fruitBowl.contents
-cerealBowl.contents
+val fruitBowl: Bowl = Bowl(fuji)
+val cerealBowl: Bowl = Bowl(alpen)
+val r1: Food = fruitBowl.contents
+val r2: Food = cerealBowl.contents
 
 case class Bowl2[F](contents: F) {
   override def toString: String = s"A yummy bowl of ${contents}s"
 }
 
-val appleBowl = Bowl(fuji)
-val muesliBowl = Bowl(alpen)
+val appleBowl: Bowl2[Apple] = Bowl2(fuji)
+val muesliBowl: Bowl2[Muesli] = Bowl2(alpen)
 appleBowl.contents
 muesliBowl.contents
 
-// but this won't work
-//case class Bowl3[F](contents: F) {
-//  override def toString: String = s"A yummy bowl of ${contents.name}s"
-//}
+case class Bowl3[F <: Food](contents: F) {
+  override def toString: String = s"A yummy bowl of ${contents.name}s"
+}
+
+val appleBowl: Bowl3[Apple] = Bowl3(fuji)
+val muesliBowl: Bowl3[Muesli] = Bowl3(alpen)
+appleBowl.contents
+muesliBowl.contents
+
+//val bowlOfNumbers = Bowl3(10) CTE
