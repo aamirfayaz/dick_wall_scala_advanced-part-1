@@ -11,6 +11,7 @@ case class Muesli(name: String) extends Cereal
 val fuji = Apple("Fuji")
 val alpen = Muesli("Alpen")
 
+//simple scala subtyping
 def eat(f: Food): String = s"${f.name} eaten"
 
 eat(fuji)
@@ -23,15 +24,20 @@ case class Bowl(food: Food) {
 }
 val fruitBowl: Bowl = Bowl(fuji)
 val cerealBowl: Bowl = Bowl(alpen)
+
+//compiler has lost knowledge of specific types, so return back Food
+
 val r1: Food = fruitBowl.contents
 val r2: Food = cerealBowl.contents
 
+// [Generics], this F is generic type, here Bowl2[Apple], type info is retained by compiler
 case class Bowl2[F](contents: F) {
   override def toString: String = s"A yummy bowl of ${contents}s"
 }
 
 val appleBowl: Bowl2[Apple] = Bowl2(fuji)
 val muesliBowl: Bowl2[Muesli] = Bowl2(alpen)
+//Now, Bowl2[Apple] and Bowl2[Muesli] r two different types
 appleBowl.contents
 muesliBowl.contents
 
