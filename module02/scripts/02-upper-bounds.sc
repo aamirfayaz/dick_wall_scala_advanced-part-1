@@ -32,4 +32,4 @@ case class FoodBowl[F <: Food](contents: F) {
 
 val appleBowl = FoodBowl(fuji)
 
-val dogBowl2 = FoodBowl(dottie)
+//val dogBowl2 = FoodBowl(dottie)
