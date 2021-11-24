@@ -32,3 +32,5 @@ describeAFruit(juicyFruit)
 
 // describeAFruit(bumpyOrange)
 
+val f1:Function1[Int, String] = (x: Int) => x.toString
+
