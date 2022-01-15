@@ -1,3 +1,5 @@
+import java.awt.desktop.AppHiddenListener
+
 abstract class Food {
   val name: String
 }
@@ -32,6 +34,10 @@ case class Bowl(food: Food) {
 
 val fruitBowl: Bowl = Bowl(fuji)
 val cerealBowl: Bowl = Bowl(alpen)
+fruitBowl.contents.asInstanceOf[Apple]
+//fruitBowl.contents.asInstanceOf[Muesli]
+//java.lang.ClassCastException: class Apple cannot be cast to class Muesli
+// (Apple and Muesli are in unnamed module of loader
 
 //compiler has lost knowledge of specific types, so returns back Food
 
@@ -46,8 +52,8 @@ case class Bowl2[F](contents: F) {
 val appleBowl: Bowl2[Apple]   = Bowl2(fuji)
 val muesliBowl: Bowl2[Muesli] = Bowl2(alpen)
 //Now, Bowl2[Apple] and Bowl2[Muesli] r two different types
-appleBowl.contents
-muesliBowl.contents
+val appBowlContents: Apple = appleBowl.contents
+val museliBowlContents: Muesli = muesliBowl.contents
 
 case class Bowl3[F <: Food](contents: F) {
   override def toString: String = s"A yummy bowl of ${contents.name}s"

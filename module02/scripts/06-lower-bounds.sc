@@ -27,7 +27,7 @@ cwo.combineWith("ten")
 
 trait CombineWith2[+T] {
   val item: T
-  def combineWith(another: T): T
+  def combineWith(another: T): T // convariant type occurs in contravariant type
 }
 */
 
@@ -35,9 +35,9 @@ trait CombineWith2[+T] {
 
 val ints = List(1,2,3,4)
 
-val anyvals = true :: ints
+val anyvals: List[AnyVal] = true :: ints
 
-val anys = "hello" :: anyvals
+val anys: List[Any] = "hello" :: anyvals
 
 case class MixedFoodBowl[+F <: Food](food1: F, food2: F) {
   override def toString: String = s"${food1.name} mixed with ${food2.name}"
@@ -50,8 +50,11 @@ case class FoodBowl[+F <: Food](food: F) {
   def mix[M >: F <: Food](other: M) = MixedFoodBowl[M](food, other)
 }
 
-val apple = Apple("Fuji")
-val banana = Banana("Chiquita")
+val apple: Apple = Apple("Fuji")
+val banana: Banana = Banana("Chiquita")
 
-FoodBowl(banana).mix(apple)
-FoodBowl(apple).mix(alpen)
+val bananaFoodBowl: FoodBowl[Banana] = FoodBowl(banana)
+
+//val r: MixedFoodBowl[Fruit] = FoodBowl(banana).mix[Apple](apple) // Apple is not >: to Banana
+val r: MixedFoodBowl[Fruit] = FoodBowl(banana).mix[Fruit](apple) // Fruit is least upper bound LUB
+val ans: MixedFoodBowl[Food] = FoodBowl(apple).mix(alpen)

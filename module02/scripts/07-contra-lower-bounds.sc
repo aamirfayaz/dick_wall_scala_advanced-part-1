@@ -6,10 +6,7 @@ trait Fruit extends Food
 case class Apple(name: String) extends Fruit
 case class Orange(name: String) extends Fruit
 
-case class M(x: Int) extends Apple("")
-
 trait Sink[-T] { outer =>
-
   def send(item: T): String
   def andThenSink[U <: T](other: Sink[U]): Sink[U] = {
     (item: U) => outer.send(item) + " and then " + other.send(item)
@@ -32,6 +29,19 @@ object JsonInstance {
 val x:Action = (x: Int) => x + 10
  */
 
+//below not possible, aa has to be abstract
+/* trait Action {
+  def act(x: Int):Int
+  def aa(x: String)
+}
+val x:Action = (x: Int) => x + 10*/
+
+trait Action {
+  def act(x: Int):Int
+  def aa(x: String) = act(x.toInt)
+}
+val xx:Action = (x: Int) => x + 10
+xx.act(10)
 
 class AppleSink extends Sink[Apple] {
   def send(item: Apple) = s"Coring and eating ${item.name}"
@@ -55,11 +65,11 @@ sinkAnApple(new AppleSink())
 //sinkAnApple(OrangeSink)  // this shouldn't work
 
 sinkAnApple(new FruitSink())
-//val newSink: Sink[Apple] = FruitSink.andThenSink(AppleSink)
-val x: FruitSink = new FruitSink()
-val a: AppleSink = new AppleSink()
+val newSink1: Sink[Apple] = new FruitSink().andThenSink(new AppleSink())
+val newSink2: Sink[Apple] = new AppleSink().andThenSink(new FruitSink())
+
 val o: OrangeSink = new OrangeSink()
-val newSink: Sink[M] = a.andThenSink[M](x)
-//val newSink: Sink[M] = a.andThenSink[M](o)
-//sinkAnApple(newSink)
+
+sinkAnApple(newSink1)
+//sinkAnApple(newSink2)
 
