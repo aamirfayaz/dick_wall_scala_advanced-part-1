@@ -18,6 +18,8 @@ fred.weightInKilos
 
 fred.weightInKilos = 60 // new weight in kilos
 //fred.weightInKilos_=(60)
+fred.weightInPounds
+fred.weightInKilos
 
 val w = fred.weightInKilos
 

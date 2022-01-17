@@ -17,7 +17,28 @@ object To {
   def be = "That is the question"
 }
 
-To be or not to be
+class LL {
+  def me = ""
+}
+val obj = new LL
+def takeLL(o: obj.type) = {
+  ""
+}
 
-To not to be or be
+val obj2 = new LL
+takeLL(obj)
+
+//takeLL(obj2) CTE
+
+/*To be or not to be
+
+To not to be or be*/
+
+object LL {
+
+}
+//It's also how you can refer to the type of a
+// singleton object in Scala
+def m: LL.type = LL
+
 

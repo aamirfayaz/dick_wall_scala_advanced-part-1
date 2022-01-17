@@ -22,4 +22,11 @@ val foodInBowl1 = bowlOfAlpen.food
 val foodInBowl2: Muesli = bowlOfAlpen.food
 
 // but this doesn't work - try it:
-// val foodInBowl: bowlOfAlpen.F = bowlOfAlpen.food
+//val foodInBowl: bowlOfAlpen.F = bowlOfAlpen.food
+//same way as private[this]
+class Foo(x: Int) {
+  val theX = x
+}
+val foo = new Foo(10)
+foo.theX
+//foo.x
