@@ -30,9 +30,9 @@ takeLL(obj)
 
 //takeLL(obj2) CTE
 
-/*To be or not to be
+To be or not to be
 
-To not to be or be*/
+To not to be or be
 
 object LL {
 
